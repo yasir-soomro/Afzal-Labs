@@ -13,6 +13,8 @@ export function Footer() {
           <span>Motion</span>
         </div>
         <div className="flex gap-2 sm:gap-4 flex-wrap justify-center">
+          <Link href="/accessibility" className="hover:text-zinc-900 transition-colors hover:underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1">Accessibility</Link>
+          <span className="text-zinc-300">•</span>
           <Link href="/privacy" className="hover:text-zinc-900 transition-colors hover:underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1">Privacy Policy</Link>
           <span className="text-zinc-300">•</span>
           <Link href="/terms" className="hover:text-zinc-900 transition-colors hover:underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1">Terms of Service</Link>

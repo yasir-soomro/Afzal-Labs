@@ -9,6 +9,14 @@ export const metadata = {
 
 const allProjects = [
   {
+    title: "Zentrix",
+    category: "E-commerce Website",
+    image: "https://picsum.photos/seed/zentrix/800/600",
+    stats: { performance: "98", size: "~120KB" },
+    year: "2026",
+    link: "https://zentrix-store-r3dk.vercel.app/"
+  },
+  {
     title: "Neural Synthesis",
     category: "AI SaaS Platform",
     image: "https://picsum.photos/seed/neural/800/600",
@@ -68,7 +76,14 @@ export default function ProjectArchivePage() {
                   <span className="text-xs font-mono text-zinc-500 tracking-widest uppercase">{project.category}</span>
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-4">
-                  {project.title}
+                  {project.link ? (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors flex items-center gap-2 group/link focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">
+                      {project.title}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-up-right w-6 h-6 text-zinc-400 group-hover/link:text-blue-600 transition-all transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                    </a>
+                  ) : (
+                    project.title
+                  )}
                 </h2>
                 
                 <div className="grid grid-cols-2 gap-4 mt-4 max-w-sm">

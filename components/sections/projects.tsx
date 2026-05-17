@@ -8,6 +8,13 @@ import Link from "next/link";
 
 const projects = [
   {
+    title: "Zentrix",
+    category: "E-Commerce Website",
+    image: "https://picsum.photos/seed/zentrix/800/600",
+    stats: { performance: "98", size: "~120KB" },
+    link: "https://zentrix-store-r3dk.vercel.app/"
+  },
+  {
     title: "Neural Synthesis",
     category: "AI SaaS Platform",
     image: "https://picsum.photos/seed/neural/800/600",
@@ -43,36 +50,76 @@ export function Projects() {
         className="grid grid-cols-1 md:grid-cols-2 gap-8"
       >
         {projects.map((project, i) => (
-          <motion.div key={i} variants={fadeIn} className="group cursor-pointer">
-            <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6 border border-zinc-200 shadow-sm bg-zinc-100 group-hover:shadow-lg transition-all">
-              <div className="absolute inset-0 bg-blue-600/5 mix-blend-multiply group-hover:bg-transparent transition-all z-10" />
-              <Image 
-                src={project.image} 
-                alt={project.title} 
-                fill 
-                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" 
-                referrerPolicy="no-referrer"
-              />
-              
-              {/* Stats Overlay */}
-              <div className="absolute bottom-0 w-full p-4 bg-gradient-to-t from-white/95 via-white/80 to-transparent z-20 flex justify-between items-end translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                <div className="font-mono text-[10px] uppercase">
-                  <span className="text-zinc-500">Lighthouse</span>
-                  <p className="font-bold text-emerald-600">{project.stats.performance}</p>
-                </div>
-                <div className="font-mono text-[10px] uppercase text-right">
-                  <span className="text-zinc-500">Bundle</span>
-                  <p className="font-bold text-blue-600">{project.stats.size}</p>
+          project.link ? (
+            <motion.a 
+              key={i} 
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              variants={fadeIn} 
+              className="group cursor-pointer block focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-xl"
+            >
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6 border border-zinc-200 shadow-sm bg-zinc-100 group-hover:shadow-lg transition-all">
+                <div className="absolute inset-0 bg-blue-600/5 mix-blend-multiply group-hover:bg-transparent transition-all z-10" />
+                <Image 
+                  src={project.image} 
+                  alt={project.title} 
+                  fill 
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" 
+                  referrerPolicy="no-referrer"
+                />
+                
+                {/* Stats Overlay */}
+                <div className="absolute bottom-0 w-full p-4 bg-gradient-to-t from-white/95 via-white/80 to-transparent z-20 flex justify-between items-end translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="font-mono text-[10px] uppercase">
+                    <span className="text-zinc-500">Lighthouse</span>
+                    <p className="font-bold text-emerald-600">{project.stats.performance}</p>
+                  </div>
+                  <div className="font-mono text-[10px] uppercase text-right">
+                    <span className="text-zinc-500">Bundle</span>
+                    <p className="font-bold text-blue-600">{project.stats.size}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <h3 className="text-xl font-bold tracking-tight text-zinc-900 mb-1 flex items-center justify-between">
-              {project.title}
-              <ArrowUpRight className="w-5 h-5 text-zinc-400 group-hover:text-blue-600 transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </h3>
-            <p className="text-xs font-mono text-zinc-600 tracking-widest uppercase">{project.category}</p>
-          </motion.div>
+              
+              <h3 className="text-xl font-bold tracking-tight text-zinc-900 mb-1 flex items-center justify-between">
+                {project.title}
+                <ArrowUpRight className="w-5 h-5 text-zinc-400 group-hover:text-blue-600 transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </h3>
+              <p className="text-xs font-mono text-zinc-600 tracking-widest uppercase">{project.category}</p>
+            </motion.a>
+          ) : (
+            <motion.div key={i} variants={fadeIn} className="group cursor-pointer">
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6 border border-zinc-200 shadow-sm bg-zinc-100 group-hover:shadow-lg transition-all">
+                <div className="absolute inset-0 bg-blue-600/5 mix-blend-multiply group-hover:bg-transparent transition-all z-10" />
+                <Image 
+                  src={project.image} 
+                  alt={project.title} 
+                  fill 
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" 
+                  referrerPolicy="no-referrer"
+                />
+                
+                {/* Stats Overlay */}
+                <div className="absolute bottom-0 w-full p-4 bg-gradient-to-t from-white/95 via-white/80 to-transparent z-20 flex justify-between items-end translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="font-mono text-[10px] uppercase">
+                    <span className="text-zinc-500">Lighthouse</span>
+                    <p className="font-bold text-emerald-600">{project.stats.performance}</p>
+                  </div>
+                  <div className="font-mono text-[10px] uppercase text-right">
+                    <span className="text-zinc-500">Bundle</span>
+                    <p className="font-bold text-blue-600">{project.stats.size}</p>
+                  </div>
+                </div>
+              </div>
+              
+              <h3 className="text-xl font-bold tracking-tight text-zinc-900 mb-1 flex items-center justify-between">
+                {project.title}
+                <ArrowUpRight className="w-5 h-5 text-zinc-400 group-hover:text-blue-600 transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </h3>
+              <p className="text-xs font-mono text-zinc-600 tracking-widest uppercase">{project.category}</p>
+            </motion.div>
+          )
         ))}
       </motion.div>
     </section>

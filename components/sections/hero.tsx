@@ -61,13 +61,30 @@ export function Hero() {
       <div className="flex w-full relative z-10 lg:flex-row flex-col items-center">
         {/* Left Content */}
         <motion.div 
-          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="w-full lg:w-3/5"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { 
+              opacity: 1,
+              transition: { staggerChildren: 0.15, delayChildren: 0.2 } 
+            }
+          }}
+          className="w-full lg:w-3/5 relative z-20"
         >
-          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 mb-8">
+          <motion.div 
+            variants={{
+              hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+              visible: { 
+                opacity: 1, 
+                y: 0, 
+                filter: "blur(0px)",
+                transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+              }
+            }} 
+            className="flex flex-wrap items-center gap-3 mb-8"
+          >
             <span className="flex items-center gap-2 text-xs font-mono text-blue-700 bg-blue-100/50 uppercase tracking-widest px-4 py-2 border border-blue-200 rounded-full shadow-sm backdrop-blur-sm">
               <BrainCircuit className="w-4 h-4" />
               Lead AI Engineer
@@ -78,17 +95,84 @@ export function Hero() {
             </span>
           </motion.div>
           
-          <motion.h1 variants={fadeUp} className="text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[1.05] text-zinc-900">
-            Architecting <br/>
-            <Typewriter /> <br/>
-            Web Systems
-          </motion.h1>
+          <h1 className="text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[1.05] text-zinc-900 flex flex-col gap-2">
+            <div className="overflow-hidden pb-2">
+              <motion.div 
+                variants={{
+                  hidden: { y: "100%", opacity: 0, rotateZ: 3 },
+                  visible: { 
+                    y: 0, 
+                    opacity: 1, 
+                    rotateZ: 0,
+                    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+                  }
+                }}
+                className="origin-left"
+              >
+                Architecting
+              </motion.div>
+            </div>
+            <div className="overflow-hidden pb-2">
+              <motion.div 
+                variants={{
+                  hidden: { y: "100%", opacity: 0, rotateZ: 3 },
+                  visible: { 
+                    y: 0, 
+                    opacity: 1, 
+                    rotateZ: 0,
+                    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+                  }
+                }}
+                className="origin-left"
+              >
+                <div className="flex"><Typewriter /></div>
+              </motion.div>
+            </div>
+            <div className="overflow-hidden pb-2">
+              <motion.div 
+                variants={{
+                  hidden: { y: "100%", opacity: 0, rotateZ: 3 },
+                  visible: { 
+                    y: 0, 
+                    opacity: 1, 
+                    rotateZ: 0,
+                    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+                  }
+                }}
+                className="origin-left"
+              >
+                Web Systems
+              </motion.div>
+            </div>
+          </h1>
           
-          <motion.p variants={fadeUp} className="mt-8 text-lg md:text-xl text-zinc-600 max-w-xl leading-relaxed">
+          <motion.p 
+            variants={{
+              hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+              visible: { 
+                opacity: 1, 
+                y: 0, 
+                filter: "blur(0px)",
+                transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+              }
+            }} 
+            className="mt-8 text-lg md:text-xl text-zinc-600 max-w-xl leading-relaxed"
+          >
             Afzal Labs specializes in embedding advanced machine learning capabilities into highly scalable, premium Next.js applications. 
           </motion.p>
           
-          <motion.div variants={fadeUp} className="mt-12 flex flex-col sm:flex-row gap-4">
+          <motion.div 
+            variants={{
+              hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+              visible: { 
+                opacity: 1, 
+                y: 0, 
+                filter: "blur(0px)",
+                transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+              }
+            }}  
+            className="mt-12 flex flex-col sm:flex-row gap-4"
+          >
             <a href="#projects" className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-blue-700 shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)] hover:-translate-y-1 transition-all">
               Initialize Project <ArrowRight className="w-4 h-4" />
             </a>

@@ -71,7 +71,7 @@ export function Navbar() {
         </nav>
         
         <div className="hidden md:block">
-          <Link href="/#contact" onClick={(e) => handleScrollTo(e, 'contact')} className="px-5 py-2.5 bg-zinc-900 text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-zinc-800 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm hover:shadow">
+          <Link href="/#contact" onClick={(e) => handleScrollTo(e, 'contact')} role="button" aria-label="Navigate to contact section" className="px-5 py-2.5 bg-zinc-900 text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-zinc-800 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm hover:shadow">
             Contact Me
           </Link>
         </div>
@@ -124,7 +124,7 @@ export function Navbar() {
               <Link href="/#services" onClick={(e) => handleScrollTo(e, 'services')} className="hover:text-zinc-900 transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Services</Link>
               <Link href="/#experience" onClick={(e) => handleScrollTo(e, 'experience')} className="hover:text-zinc-900 transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Experience</Link>
               <Link href="/#projects" onClick={(e) => handleScrollTo(e, 'projects')} className="hover:text-zinc-900 transition-colors py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Work</Link>
-              <Link href="/#contact" onClick={(e) => handleScrollTo(e, 'contact')} className="mx-auto mt-4 px-8 py-3 bg-zinc-900 text-white rounded-full text-xs font-bold uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
+              <Link href="/#contact" onClick={(e) => handleScrollTo(e, 'contact')} role="button" aria-label="Navigate to contact section" className="mx-auto mt-4 px-8 py-3 bg-zinc-900 text-white rounded-full text-xs font-bold uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
                 Contact Me
               </Link>
             </nav>

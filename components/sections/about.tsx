@@ -18,7 +18,7 @@ export function About() {
           <div className="absolute inset-0 bg-gradient-to-tr from-blue-200/40 to-indigo-200/40 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-700" />
           <Image 
             src="https://picsum.photos/seed/developer/800/800" 
-            alt="AI Engineer" 
+            alt="Full Stack Agentic AI Engineer" 
             fill 
             className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105"
             referrerPolicy="no-referrer"
@@ -27,11 +27,11 @@ export function About() {
 
         <div className="flex flex-col justify-center">
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-black tracking-tighter uppercase text-zinc-900 mb-6">
-            Bridging <span className="text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text">Intelligence</span> <br/> and Production.
+            Bridging <span className="text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text">Agentic Systems</span> <br/> and Production.
           </motion.h2>
           <motion.div variants={fadeUp} className="space-y-4 text-zinc-600 leading-relaxed text-sm md:text-base">
             <p>
-              I am a Full Stack & AI Engineer specialized in architecting intelligent systems that scale. With a deep foundation in both modern web technologies and applied machine learning, I build software that not only looks exceptional but operates with cognitive capabilities.
+              I am a Full Stack Agentic AI Engineer specialized in architecting agentic systems that scale. With a deep foundation in both modern web technologies and applied machine learning, I build software that not only looks exceptional but operates with cognitive capabilities.
             </p>
             <p>
               From training bespoke ML models to deploying highly resilient Next.js architectures on cloud infrastructure, my focus is always on delivering production-ready value with zero compromises on performance or aesthetics.

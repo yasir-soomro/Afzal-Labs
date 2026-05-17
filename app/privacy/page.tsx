@@ -18,7 +18,7 @@ export default function PrivacyPolicyPage() {
         
         <div className="prose prose-zinc max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight prose-a:text-blue-600">
           <p className="text-lg text-zinc-600 leading-relaxed mb-8">
-            At Afzal Labs, we take your privacy seriously. This policy describes what personal information we collect and how we use it to provide our intelligent web systems and services.
+            At Afzal Labs, we take your privacy seriously. This policy describes what personal information we collect and how we use it to provide our agentic web systems and services.
           </p>
           
           <h2 className="text-2xl mt-8 mb-4">1. Information Collection</h2>

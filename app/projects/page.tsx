@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export const metadata = {
   title: 'Project Archive - Afzal Labs',
-  description: 'Complete archive of intelligent web systems built by Afzal Labs',
+  description: 'Complete archive of agentic web systems built by Afzal Labs',
 };
 
 const allProjects = [

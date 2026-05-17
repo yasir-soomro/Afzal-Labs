@@ -7,8 +7,8 @@ import { Brain, Code2, Cpu } from "lucide-react";
 const services = [
   {
     id: "01",
-    title: "AI Integration",
-    description: "Embedding large language models, computer vision, and predictive logic into modern product architectures.",
+    title: "Agentic AI Integration",
+    description: "Developing autonomous agents, reasoning engines, and cognitive workflows into modern product architectures.",
     icon: Brain
   },
   {

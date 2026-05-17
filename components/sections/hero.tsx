@@ -87,64 +87,26 @@ export function Hero() {
           >
             <span className="flex items-center gap-2 text-xs font-mono text-blue-700 bg-blue-100/50 uppercase tracking-widest px-4 py-2 border border-blue-200 rounded-full shadow-sm backdrop-blur-sm">
               <BrainCircuit className="w-4 h-4" />
-              Lead AI Engineer
-            </span>
-            <span className="flex items-center gap-2 text-xs font-mono text-zinc-600 bg-white shadow-sm uppercase tracking-widest px-4 py-2 border border-zinc-200 rounded-full">
-              <Terminal className="w-4 h-4" />
-              Full Stack Expert
+              Full Stack Agentic AI Engineer
             </span>
           </motion.div>
           
-          <h1 className="text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[1.05] text-zinc-900 flex flex-col gap-2">
-            <div className="overflow-hidden pb-2">
-              <motion.div 
-                variants={{
-                  hidden: { y: "100%", opacity: 0, rotateZ: 3 },
-                  visible: { 
-                    y: 0, 
-                    opacity: 1, 
-                    rotateZ: 0,
-                    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
-                  }
-                }}
-                className="origin-left"
-              >
-                Architecting
-              </motion.div>
-            </div>
-            <div className="overflow-hidden pb-2">
-              <motion.div 
-                variants={{
-                  hidden: { y: "100%", opacity: 0, rotateZ: 3 },
-                  visible: { 
-                    y: 0, 
-                    opacity: 1, 
-                    rotateZ: 0,
-                    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
-                  }
-                }}
-                className="origin-left"
-              >
-                <div className="flex"><Typewriter /></div>
-              </motion.div>
-            </div>
-            <div className="overflow-hidden pb-2">
-              <motion.div 
-                variants={{
-                  hidden: { y: "100%", opacity: 0, rotateZ: 3 },
-                  visible: { 
-                    y: 0, 
-                    opacity: 1, 
-                    rotateZ: 0,
-                    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
-                  }
-                }}
-                className="origin-left"
-              >
-                Web Systems
-              </motion.div>
-            </div>
-          </h1>
+          <motion.h1 
+            variants={{
+              hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+              visible: { 
+                opacity: 1, 
+                y: 0, 
+                filter: "blur(0px)",
+                transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+              }
+            }}
+            className="text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[1.05] text-zinc-900"
+          >
+            Architecting <br/>
+            <Typewriter /> <br/>
+            Web Systems
+          </motion.h1>
           
           <motion.p 
             variants={{
@@ -158,7 +120,7 @@ export function Hero() {
             }} 
             className="mt-8 text-lg md:text-xl text-zinc-600 max-w-xl leading-relaxed"
           >
-            Afzal Labs specializes in embedding advanced machine learning capabilities into highly scalable, premium Next.js applications. 
+            As a Full Stack Agentic AI Engineer, I specialize in architecting highly scalable, premium Next.js applications driven by autonomous AI agents and cognitive capabilities. 
           </motion.p>
           
           <motion.div 

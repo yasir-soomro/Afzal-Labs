@@ -5,7 +5,7 @@ import { fadeUp, staggerContainer } from "@/animations/variants";
 
 const experiences = [
   {
-    role: "Lead AI Engineer",
+    role: "Full Stack Agentic AI Engineer",
     company: "Nexus Dynamics",
     period: "2024 - Present",
     description: "Architected a distributed machine learning pipeline processing 10M+ events daily. Led the transition to hybrid edge-cloud inference models."

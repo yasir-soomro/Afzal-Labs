@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 const phrases = [
-  { text: "Intelligent", color: "from-blue-600 via-indigo-600 to-purple-600" },
+  { text: "Agentic", color: "from-blue-600 via-indigo-600 to-purple-600" },
   { text: "Scalable", color: "from-emerald-500 via-teal-500 to-cyan-600" },
   { text: "Resilient", color: "from-rose-500 via-red-500 to-orange-500" },
   { text: "Next-Gen", color: "from-violet-600 via-purple-600 to-fuchsia-600" }

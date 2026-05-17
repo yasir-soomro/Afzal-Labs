@@ -3,7 +3,7 @@ import './globals.css'; // Global styles
 
 export const metadata: Metadata = {
   title: 'Afzal Labs',
-  description: 'Building Intelligent Web Systems',
+  description: 'Building Agentic Web Systems',
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

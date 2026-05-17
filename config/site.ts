@@ -12,7 +12,7 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: "Afzal Labs",
-  description: "Building Intelligent Web Systems",
+  description: "Building Agentic Web Systems",
   url: "https://example.com",
   ogImage: "https://example.com/og.jpg",
   links: {

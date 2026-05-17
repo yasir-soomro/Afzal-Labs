@@ -1,44 +1,106 @@
 "use client";
 
 import { motion } from "motion/react";
-import { fadeIn, staggerContainer } from "@/animations/variants";
-import { ArrowRight, Terminal } from "lucide-react";
+import { fadeUp, staggerContainer } from "@/animations/variants";
+import { ArrowRight, Terminal, BrainCircuit, Activity, Cpu } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden w-full max-w-7xl mx-auto px-4 md:px-10">
-      {/* Background glow effects */}
-      <div className="absolute top-0 right-[-100px] w-96 h-96 md:w-[500px] md:h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-[-100px] w-96 h-96 md:w-[500px] md:h-[500px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
-      
+    <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden w-full max-w-7xl mx-auto px-4 md:px-10 min-h-[90vh] flex items-center">
+      {/* Background glow effects - Animated */}
       <motion.div 
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
-        className="relative z-10 max-w-4xl"
-      >
-        <motion.div variants={fadeIn} className="flex items-center gap-2 mb-6">
-          <Terminal className="w-4 h-4 text-zinc-500" />
-          <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">System Ready • v2.0.0</span>
+        animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-0 right-[-100px] md:right-[100px] w-96 h-96 md:w-[600px] md:h-[600px] bg-blue-400/20 rounded-full blur-[120px] pointer-events-none" 
+      />
+      <motion.div 
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.4, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-[-100px] left-[-100px] md:left-[100px] w-96 h-96 md:w-[600px] md:h-[600px] bg-indigo-400/20 rounded-full blur-[120px] pointer-events-none" 
+      />
+      
+      <div className="flex w-full relative z-10 lg:flex-row flex-col items-center">
+        {/* Left Content */}
+        <motion.div 
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="w-full lg:w-3/5"
+        >
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 mb-8">
+            <span className="flex items-center gap-2 text-xs font-mono text-blue-700 bg-blue-100/50 uppercase tracking-widest px-4 py-2 border border-blue-200 rounded-full shadow-sm backdrop-blur-sm">
+              <BrainCircuit className="w-4 h-4" />
+              Lead AI Engineer
+            </span>
+            <span className="flex items-center gap-2 text-xs font-mono text-zinc-600 bg-white shadow-sm uppercase tracking-widest px-4 py-2 border border-zinc-200 rounded-full">
+              <Terminal className="w-4 h-4" />
+              Full Stack Expert
+            </span>
+          </motion.div>
+          
+          <motion.h1 variants={fadeUp} className="text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.95] text-zinc-900">
+            Architecting <br/>
+            <span className="text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text">Intelligent</span> <br/>
+            Web Systems
+          </motion.h1>
+          
+          <motion.p variants={fadeUp} className="mt-8 text-lg md:text-xl text-zinc-600 max-w-xl leading-relaxed">
+            Afzal Labs specializes in embedding advanced machine learning capabilities into highly scalable, premium Next.js applications. 
+          </motion.p>
+          
+          <motion.div variants={fadeUp} className="mt-12 flex flex-col sm:flex-row gap-4">
+            <a href="#projects" className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-blue-700 shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)] hover:-translate-y-1 transition-all">
+              Initialize Project <ArrowRight className="w-4 h-4" />
+            </a>
+            <a href="#experience" className="flex items-center justify-center px-8 py-4 bg-white border border-zinc-200 text-zinc-800 font-bold uppercase tracking-wider text-sm rounded-full hover:bg-zinc-50 hover:shadow-md hover:-translate-y-1 transition-all">
+              View Architecture
+            </a>
+          </motion.div>
         </motion.div>
-        
-        <motion.h1 variants={fadeIn} className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] text-white">
-          Building <br/> <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text">Intelligent</span> Web Systems
-        </motion.h1>
-        
-        <motion.p variants={fadeIn} className="mt-8 text-base md:text-lg text-zinc-400 max-w-2xl leading-relaxed">
-          Afzal Labs architects scalable, AI-powered applications and premium digital experiences. We bridge the gap between complex engineering and elegant design.
-        </motion.p>
-        
-        <motion.div variants={fadeIn} className="mt-10 flex flex-col sm:flex-row gap-4">
-          <a href="#projects" className="flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-bold uppercase tracking-wider text-sm rounded-full hover:bg-zinc-200 transition-colors">
-            Explore Work <ArrowRight className="w-4 h-4" />
-          </a>
-          <a href="#github" className="flex items-center justify-center px-8 py-4 bg-white/5 border border-white/10 text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-white/10 transition-colors">
-            View Source
-          </a>
+
+        {/* Right Content - Floating Cards */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="hidden lg:flex w-full lg:w-2/5 relative h-[500px] items-center justify-center"
+        >
+          {/* Main Visual Node */}
+          <div className="absolute w-[300px] h-[300px] border-[1px] border-blue-200/50 rounded-[40px] rotate-12 flex items-center justify-center bg-gradient-to-tr from-blue-50/50 to-indigo-50/20 shadow-2xl backdrop-blur-xl transition-all duration-700 hover:rotate-0 hover:scale-105">
+             <div className="w-[200px] h-[200px] border-[1px] border-indigo-200/50 rounded-[30px] flex items-center justify-center bg-white/60 animate-[spin_20s_linear_infinite] shadow-inner" />
+          </div>
+
+          <motion.div 
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-10 right-0 bg-white/90 backdrop-blur-md border border-zinc-200 p-4 rounded-xl shadow-xl flex items-center gap-4 z-20"
+          >
+            <div className="bg-blue-100 p-3 rounded-lg text-blue-600">
+              <Cpu className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Inference Engine</p>
+              <p className="font-bold text-zinc-900">Optimized</p>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            animate={{ y: [0, 15, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-20 left-0 bg-white/90 backdrop-blur-md border border-zinc-200 p-4 rounded-xl shadow-xl flex items-center gap-4 z-20"
+          >
+            <div className="bg-emerald-100 p-3 rounded-lg text-emerald-600">
+              <Activity className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">System Latency</p>
+              <p className="font-bold text-zinc-900">12ms P99</p>
+            </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

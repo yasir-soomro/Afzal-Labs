@@ -14,8 +14,8 @@ export function About() {
         viewport={{ once: true, margin: "-100px" }}
         className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
       >
-        <motion.div variants={fadeUp} className="relative aspect-square w-full max-w-md mx-auto md:mx-0 rounded-2xl overflow-hidden border border-white/10 group">
-          <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-purple-600/20 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-700" />
+        <motion.div variants={fadeUp} className="relative aspect-square w-full max-w-md mx-auto md:mx-0 rounded-2xl overflow-hidden border border-zinc-200 group shadow-lg">
+          <div className="absolute inset-0 bg-gradient-to-tr from-blue-200/40 to-indigo-200/40 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-700" />
           <Image 
             src="https://picsum.photos/seed/developer/800/800" 
             alt="AI Engineer" 
@@ -26,10 +26,10 @@ export function About() {
         </motion.div>
 
         <motion.div variants={fadeUp} className="flex flex-col justify-center">
-          <h2 className="text-3xl md:text-4xl font-black tracking-tighter uppercase text-white mb-6">
-            Bridging <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text">Intelligence</span> <br/> and Production.
+          <h2 className="text-3xl md:text-4xl font-black tracking-tighter uppercase text-zinc-900 mb-6">
+            Bridging <span className="text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text">Intelligence</span> <br/> and Production.
           </h2>
-          <div className="space-y-4 text-zinc-400 leading-relaxed text-sm md:text-base">
+          <div className="space-y-4 text-zinc-600 leading-relaxed text-sm md:text-base">
             <p>
               I am a Full Stack & AI Engineer specialized in architecting intelligent systems that scale. With a deep foundation in both modern web technologies and applied machine learning, I build software that not only looks exceptional but operates with cognitive capabilities.
             </p>
@@ -38,13 +38,13 @@ export function About() {
             </p>
           </div>
           
-          <div className="mt-8 grid grid-cols-2 gap-6 pt-8 border-t border-white/10">
+          <div className="mt-8 grid grid-cols-2 gap-6 pt-8 border-t border-zinc-200">
             <div>
-              <p className="text-3xl font-bold text-white font-mono">5+</p>
+              <p className="text-3xl font-bold text-zinc-900 font-mono">5+</p>
               <p className="text-xs uppercase tracking-widest text-zinc-500 mt-1">Years Engineering</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-white font-mono">20+</p>
+              <p className="text-3xl font-bold text-zinc-900 font-mono">20+</p>
               <p className="text-xs uppercase tracking-widest text-zinc-500 mt-1">AI Models Deployed</p>
             </div>
           </div>

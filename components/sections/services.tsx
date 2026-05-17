@@ -29,7 +29,7 @@ export function Services() {
   return (
     <section id="services" className="py-20 w-full max-w-7xl mx-auto px-4 md:px-10 relative mt-20">
       <div className="mb-12">
-        <h2 className="text-3xl font-black tracking-tighter uppercase text-white">Capabilities</h2>
+        <h2 className="text-3xl font-black tracking-tighter uppercase text-zinc-900">Capabilities</h2>
         <p className="mt-2 text-xs font-mono text-zinc-500 uppercase tracking-widest">What we do best</p>
       </div>
       
@@ -41,13 +41,13 @@ export function Services() {
         className="grid grid-cols-1 md:grid-cols-3 gap-6"
       >
         {services.map((service) => (
-          <motion.div key={service.id} variants={fadeIn} className="p-8 bg-zinc-900/40 backdrop-blur-sm rounded-2xl border border-white/5 hover:border-white/10 transition-all hover:bg-white/5 group">
+          <motion.div key={service.id} variants={fadeIn} className="p-8 bg-white rounded-2xl border border-zinc-200 hover:border-blue-200 hover:shadow-xl hover:-translate-y-1 transition-all group">
             <div className="flex justify-between items-start mb-6">
-              <span className="text-xs font-mono text-blue-500 font-bold tracking-widest">{service.id}.</span>
-              <service.icon className="w-6 h-6 text-zinc-500 group-hover:text-blue-400 transition-colors" />
+              <span className="text-xs font-mono text-blue-600 font-bold tracking-widest">{service.id}.</span>
+              <service.icon className="w-6 h-6 text-zinc-400 group-hover:text-blue-600 transition-colors" />
             </div>
-            <h3 className="text-lg font-bold text-white mb-4 tracking-tight">{service.title}</h3>
-            <p className="text-sm text-zinc-400 leading-relaxed">
+            <h3 className="text-lg font-bold text-zinc-900 mb-4 tracking-tight">{service.title}</h3>
+            <p className="text-sm text-zinc-600 leading-relaxed">
               {service.description}
             </p>
           </motion.div>

@@ -11,7 +11,7 @@ import { Footer } from "@/components/layout/footer";
 
 export default function Page() {
   return (
-    <div className="w-full min-h-screen bg-[#0A0A0A] text-[#E0E0E0] font-sans flex flex-col overflow-x-hidden relative selection:bg-blue-500/30">
+    <div className="w-full min-h-screen bg-zinc-50 text-zinc-900 font-sans flex flex-col overflow-x-hidden relative selection:bg-blue-200 selection:text-blue-900">
       <Navbar />
       
       <main className="flex-1 w-full flex flex-col items-center">

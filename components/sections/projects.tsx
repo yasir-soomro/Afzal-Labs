@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { fadeIn, staggerContainer } from "@/animations/variants";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const projects = [
   {
@@ -28,10 +29,10 @@ export function Projects() {
           <h2 className="text-3xl font-black tracking-tighter uppercase text-zinc-900">Featured Work</h2>
           <p className="mt-2 text-xs font-mono text-zinc-500 uppercase tracking-widest">Production Deployments</p>
         </div>
-        <a href="#" className="mt-4 md:mt-0 text-xs font-mono text-blue-600 hover:text-blue-700 uppercase tracking-widest flex items-center gap-1 group">
+        <Link href="/projects" className="mt-4 md:mt-0 text-xs font-mono text-blue-600 hover:text-blue-700 uppercase tracking-widest flex items-center gap-1 group focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-2 py-1">
           View All Archive 
           <ArrowUpRight className="w-3 h-3 group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-transform" />
-        </a>
+        </Link>
       </div>
 
       <motion.div 

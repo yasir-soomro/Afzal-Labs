@@ -14,7 +14,7 @@ export default function Page() {
     <div className="w-full min-h-screen bg-zinc-50 text-zinc-900 font-sans flex flex-col overflow-x-hidden relative selection:bg-blue-200 selection:text-blue-900">
       <Navbar />
       
-      <main className="flex-1 w-full flex flex-col items-center">
+      <main id="main-content" className="flex-1 w-full flex flex-col items-center" tabIndex={-1}>
         <Hero />
         <TechStack />
         <About />

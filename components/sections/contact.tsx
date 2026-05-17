@@ -46,18 +46,24 @@ export function Contact() {
           <form className="max-w-md mx-auto space-y-4 text-left" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 gap-4">
               <div>
+                <label htmlFor="name" className="sr-only">Name</label>
                 <input 
+                  id="name"
                   type="text" 
                   placeholder="Name" 
+                  aria-invalid={errors.name ? "true" : "false"}
                   {...register("name", { required: "Name is required" })}
                   className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm"
                 />
-                {errors.name && <p className="text-rose-500 font-mono text-[10px] uppercase tracking-widest mt-1 ml-1">{errors.name.message}</p>}
+                {errors.name && <p className="text-rose-500 font-mono text-[10px] uppercase tracking-widest mt-1 ml-1" role="alert">{errors.name.message}</p>}
               </div>
               <div>
+                <label htmlFor="email" className="sr-only">Email</label>
                 <input 
+                  id="email"
                   type="email" 
                   placeholder="Email" 
+                  aria-invalid={errors.email ? "true" : "false"}
                   {...register("email", { 
                     required: "Email is required",
                     pattern: {
@@ -67,17 +73,20 @@ export function Contact() {
                   })}
                   className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm"
                 />
-                {errors.email && <p className="text-rose-500 font-mono text-[10px] uppercase tracking-widest mt-1 ml-1">{errors.email.message}</p>}
+                {errors.email && <p className="text-rose-500 font-mono text-[10px] uppercase tracking-widest mt-1 ml-1" role="alert">{errors.email.message}</p>}
               </div>
             </div>
             <div>
+              <label htmlFor="message" className="sr-only">Message Payload</label>
               <textarea 
+                id="message"
                 placeholder="Message Payload" 
                 rows={4}
+                aria-invalid={errors.message ? "true" : "false"}
                 {...register("message", { required: "Message payload required" })}
                 className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm resize-none"
               />
-              {errors.message && <p className="text-rose-500 font-mono text-[10px] uppercase tracking-widest mt-1 ml-1">{errors.message.message}</p>}
+              {errors.message && <p className="text-rose-500 font-mono text-[10px] uppercase tracking-widest mt-1 ml-1" role="alert">{errors.message.message}</p>}
             </div>
             <button 
               type="submit"

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function Footer() {
   return (
     <footer className="w-full max-w-7xl mx-auto px-4 md:px-10 py-8 mt-20 border-t border-zinc-200">
@@ -11,9 +13,9 @@ export function Footer() {
           <span>Motion</span>
         </div>
         <div className="flex gap-2 sm:gap-4 flex-wrap justify-center">
-          <a href="#" className="hover:text-zinc-600 transition-colors">Privacy Policy</a>
+          <Link href="/privacy" className="hover:text-zinc-900 transition-colors hover:underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1">Privacy Policy</Link>
           <span className="text-zinc-300">•</span>
-          <a href="#" className="hover:text-zinc-600 transition-colors">Terms of Service</a>
+          <Link href="/terms" className="hover:text-zinc-900 transition-colors hover:underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1">Terms of Service</Link>
         </div>
       </div>
     </footer>

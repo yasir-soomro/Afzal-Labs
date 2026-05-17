@@ -25,20 +25,20 @@ export function About() {
           />
         </motion.div>
 
-        <motion.div variants={fadeUp} className="flex flex-col justify-center">
-          <h2 className="text-3xl md:text-4xl font-black tracking-tighter uppercase text-zinc-900 mb-6">
+        <div className="flex flex-col justify-center">
+          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-black tracking-tighter uppercase text-zinc-900 mb-6">
             Bridging <span className="text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text">Intelligence</span> <br/> and Production.
-          </h2>
-          <div className="space-y-4 text-zinc-600 leading-relaxed text-sm md:text-base">
+          </motion.h2>
+          <motion.div variants={fadeUp} className="space-y-4 text-zinc-600 leading-relaxed text-sm md:text-base">
             <p>
               I am a Full Stack & AI Engineer specialized in architecting intelligent systems that scale. With a deep foundation in both modern web technologies and applied machine learning, I build software that not only looks exceptional but operates with cognitive capabilities.
             </p>
             <p>
               From training bespoke ML models to deploying highly resilient Next.js architectures on cloud infrastructure, my focus is always on delivering production-ready value with zero compromises on performance or aesthetics.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="mt-8 grid grid-cols-2 gap-6 pt-8 border-t border-zinc-200">
+          <motion.div variants={fadeUp} className="mt-8 grid grid-cols-2 gap-6 pt-8 border-t border-zinc-200">
             <div>
               <p className="text-3xl font-bold text-zinc-900 font-mono">5+</p>
               <p className="text-xs uppercase tracking-widest text-zinc-500 mt-1">Years Engineering</p>
@@ -47,8 +47,8 @@ export function About() {
               <p className="text-3xl font-bold text-zinc-900 font-mono">20+</p>
               <p className="text-xs uppercase tracking-widest text-zinc-500 mt-1">AI Models Deployed</p>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   );

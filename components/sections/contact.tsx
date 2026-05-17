@@ -3,8 +3,22 @@
 import { motion } from "motion/react";
 import { fadeUp } from "@/animations/variants";
 import { Mail, ArrowRight } from "lucide-react";
+import { useForm } from "react-hook-form";
+
+type ContactFormData = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 export function Contact() {
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ContactFormData>();
+
+  const onSubmit = (data: ContactFormData) => {
+    // Implement actual transmission logic here
+    console.log("Payload data:", data);
+  };
+
   return (
     <section id="contact" className="py-24 w-full max-w-7xl mx-auto px-4 md:px-10 relative">
       <motion.div 
@@ -29,26 +43,48 @@ export function Contact() {
             Ready to architect the next-generation system? Let's discuss your project requirements and technical constraints.
           </p>
           
-          <form className="max-w-md mx-auto space-y-4" onSubmit={(e) => e.preventDefault()}>
+          <form className="max-w-md mx-auto space-y-4 text-left" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 gap-4">
-              <input 
-                type="text" 
-                placeholder="Name" 
-                className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm"
-              />
-              <input 
-                type="email" 
-                placeholder="Email" 
-                className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm"
-              />
+              <div>
+                <input 
+                  type="text" 
+                  placeholder="Name" 
+                  {...register("name", { required: "Name is required" })}
+                  className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm"
+                />
+                {errors.name && <p className="text-rose-500 font-mono text-[10px] uppercase tracking-widest mt-1 ml-1">{errors.name.message}</p>}
+              </div>
+              <div>
+                <input 
+                  type="email" 
+                  placeholder="Email" 
+                  {...register("email", { 
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email format"
+                    }
+                  })}
+                  className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm"
+                />
+                {errors.email && <p className="text-rose-500 font-mono text-[10px] uppercase tracking-widest mt-1 ml-1">{errors.email.message}</p>}
+              </div>
             </div>
-            <textarea 
-              placeholder="Message Payload" 
-              rows={4}
-              className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm resize-none"
-            />
-            <button className="w-full group flex items-center justify-center gap-2 px-8 py-4 bg-zinc-900 text-white font-bold uppercase tracking-wider text-sm rounded-lg hover:bg-zinc-800 hover:shadow-lg transition-all">
-              Transmit Payload <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div>
+              <textarea 
+                placeholder="Message Payload" 
+                rows={4}
+                {...register("message", { required: "Message payload required" })}
+                className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm resize-none"
+              />
+              {errors.message && <p className="text-rose-500 font-mono text-[10px] uppercase tracking-widest mt-1 ml-1">{errors.message.message}</p>}
+            </div>
+            <button 
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full group flex items-center justify-center gap-2 px-8 py-4 bg-zinc-900 text-white font-bold uppercase tracking-wider text-sm rounded-lg hover:bg-zinc-800 hover:shadow-lg transition-all disabled:opacity-75 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? "Transmitting..." : "Transmit Payload"} {!isSubmitting && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
             </button>
           </form>
         </div>

@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { fadeUp, staggerContainer } from "@/animations/variants";
 import { ArrowRight, Terminal, BrainCircuit, Activity, Cpu } from "lucide-react";
+import { Typewriter } from "@/components/ui/typewriter";
 
 export function Hero() {
   return (
@@ -39,9 +40,9 @@ export function Hero() {
             </span>
           </motion.div>
           
-          <motion.h1 variants={fadeUp} className="text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.95] text-zinc-900">
+          <motion.h1 variants={fadeUp} className="text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[1.05] text-zinc-900">
             Architecting <br/>
-            <span className="text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text">Intelligent</span> <br/>
+            <Typewriter /> <br/>
             Web Systems
           </motion.h1>
           

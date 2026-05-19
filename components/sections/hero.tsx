@@ -5,8 +5,10 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { fadeUp, staggerContainer } from "@/animations/variants";
 import { ArrowRight, Terminal, BrainCircuit, Activity, Cpu } from "lucide-react";
 import { Typewriter } from "@/components/ui/typewriter";
-import { HeroLottie } from "@/components/ui/hero-lottie";
+import dynamic from "next/dynamic";
 import { trackEvent } from "@/lib/analytics";
+
+const HeroLottie = dynamic(() => import("@/components/ui/hero-lottie").then(mod => mod.HeroLottie), { ssr: false });
 
 function MagneticCard({ children, className }: { children: React.ReactNode, className?: string }) {
   const ref = useRef<HTMLDivElement>(null);

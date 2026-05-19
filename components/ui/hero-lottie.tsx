@@ -3,27 +3,47 @@
 import { useState, useEffect } from "react";
 import { useLottie, useLottieInteractivity } from "lottie-react";
 
+let lottieCache: Promise<any> | null = null;
+
 export function HeroLottie() {
   const [animationData, setAnimationData] = useState<any>(null);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch("https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load Lottie animation");
-        return res.json();
+    if (!lottieCache) {
+      lottieCache = fetch("https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json")
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to load Lottie animation");
+          return res.json();
+        });
+    }
+
+    lottieCache
+      .then((data) => {
+        if (!ignore) {
+          setAnimationData(data);
+        }
       })
-      .then((data) => setAnimationData(data))
       .catch((err) => {
         console.error("Error loading Lottie animation:", err);
-        setError(true);
+        if (!ignore) {
+          setError(true);
+        }
       });
+      
+    let ignore = false;
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const lottieObj = useLottie({
     animationData: animationData || undefined,
     loop: false,
     autoplay: false,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
   });
 
   const Animation = useLottieInteractivity({

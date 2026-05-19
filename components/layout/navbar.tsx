@@ -161,18 +161,50 @@ export function Navbar() {
             <motion.div 
               initial={{ opacity: 0, y: -10, scale: 0.98 }}
               animate={{ opacity: 1, y: 10, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.98, transition: { duration: 0.2 } }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="absolute top-full left-4 right-4 bg-white border border-zinc-200 rounded-2xl py-6 px-4 flex flex-col gap-6 md:hidden shadow-2xl origin-top z-50 pointer-events-auto"
+              exit={{ opacity: 0, y: -10, scale: 0.98, transition: { duration: 0.2, delay: 0.1 } }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} // smooth ease out
+              className="absolute top-full left-4 right-4 bg-white/95 backdrop-blur-xl border border-zinc-200/50 rounded-3xl py-8 px-6 flex flex-col gap-6 md:hidden shadow-2xl origin-top z-50 pointer-events-auto"
             >
               <nav aria-label="Mobile Navigation" className="flex flex-col gap-2 text-sm font-mono uppercase tracking-widest text-zinc-500 text-center">
-                <Link href="/#about" onClick={(e) => handleScrollTo(e, 'about')} className="hover:text-blue-600 hover:bg-blue-50 transition-colors py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full">About</Link>
-                <Link href="/#services" onClick={(e) => handleScrollTo(e, 'services')} className="hover:text-blue-600 hover:bg-blue-50 transition-colors py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full">Services</Link>
-                <Link href="/#experience" onClick={(e) => handleScrollTo(e, 'experience')} className="hover:text-blue-600 hover:bg-blue-50 transition-colors py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full">Experience</Link>
-                <Link href="/#projects" onClick={(e) => handleScrollTo(e, 'projects')} className="hover:text-blue-600 hover:bg-blue-50 transition-colors py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full">Work</Link>
-                <Link href="/#contact" onClick={(e) => handleScrollTo(e, 'contact')} role="button" aria-label="Navigate to contact section" className="mx-auto mt-6 px-8 py-3.5 bg-blue-600 text-white rounded-full text-xs font-bold uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm w-full shadow-[0_0_20px_-5px_rgba(37,99,235,0.4)]">
-                  Contact Me
-                </Link>
+                {[
+                  { label: "About", href: "/#about", targetId: "about" },
+                  { label: "Services", href: "/#services", targetId: "services" },
+                  { label: "Experience", href: "/#experience", targetId: "experience" },
+                  { label: "Work", href: "/#projects", targetId: "projects" },
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.targetId}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20, transition: { duration: 0.15, delay: 0 } }}
+                    transition={{ duration: 0.4, delay: 0.1 + index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Link 
+                      href={item.href} 
+                      onClick={(e) => handleScrollTo(e, item.targetId)} 
+                      className="block hover:text-blue-600 hover:bg-blue-50/50 transition-colors py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                ))}
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10, transition: { duration: 0.15 } }}
+                  transition={{ duration: 0.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <Link 
+                    href="/#contact" 
+                    onClick={(e) => handleScrollTo(e, 'contact')} 
+                    role="button" 
+                    aria-label="Navigate to contact section" 
+                    className="mx-auto mt-6 px-8 py-4 bg-blue-600 text-white rounded-full text-xs font-bold uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm w-full block shadow-[0_0_20px_-5px_rgba(37,99,235,0.4)]"
+                  >
+                    Contact Me
+                  </Link>
+                </motion.div>
               </nav>
             </motion.div>
           )}

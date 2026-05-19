@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem; /* ~80px for the fixed header */
+  }
+}
+
 @layer utilities {
   .scrollbar-hide {
     /* IE and Edge */

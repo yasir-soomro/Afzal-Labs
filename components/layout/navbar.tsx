@@ -63,6 +63,17 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     setMobileMenuOpen(false);
     
@@ -155,15 +166,29 @@ export function Navbar() {
           </button>
         </motion.div>
 
+        {/* Mobile Menu Backdrop */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-zinc-900/20 backdrop-blur-sm z-[-1] md:hidden block pointer-events-auto"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+          )}
+        </AnimatePresence>
+
         {/* Mobile Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div 
-              initial={{ opacity: 0, y: -10, scale: 0.98 }}
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 10, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.98, transition: { duration: 0.2, delay: 0.1 } }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} // smooth ease out
-              className="absolute top-full left-4 right-4 bg-white/95 backdrop-blur-xl border border-zinc-200/50 rounded-3xl py-8 px-6 flex flex-col gap-6 md:hidden shadow-2xl origin-top z-50 pointer-events-auto"
+              exit={{ opacity: 0, y: -20, scale: 0.95, transition: { duration: 0.2 } }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute top-full left-4 right-4 bg-white shadow-2xl border border-zinc-100 rounded-3xl py-8 px-6 flex flex-col gap-6 md:hidden origin-top z-50 pointer-events-auto"
             >
               <nav aria-label="Mobile Navigation" className="flex flex-col gap-2 text-sm font-mono uppercase tracking-widest text-zinc-500 text-center">
                 {[

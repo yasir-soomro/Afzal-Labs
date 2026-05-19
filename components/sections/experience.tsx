@@ -27,10 +27,16 @@ const experiences = [
 export function Experience() {
   return (
     <section id="experience" className="py-24 w-full max-w-7xl mx-auto px-4 md:px-10">
-      <div className="mb-16">
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={fadeUp}
+        className="mb-16"
+      >
         <h2 className="text-3xl font-black tracking-tighter uppercase text-zinc-900">Journey</h2>
         <p className="mt-2 text-xs font-mono text-zinc-500 uppercase tracking-widest">Professional Timeline</p>
-      </div>
+      </motion.div>
 
       <motion.div 
         variants={staggerContainer}

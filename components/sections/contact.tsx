@@ -40,7 +40,7 @@ export function Contact() {
             Initialize Contact
           </h2>
           <p className="text-zinc-600 mb-10 text-lg">
-            Ready to architect the next-generation system? Let's discuss your project requirements and technical constraints.
+            Ready to architect the next-generation system? Let&apos;s discuss your project requirements and technical constraints.
           </p>
           
           <form className="max-w-md mx-auto space-y-4 text-left" onSubmit={handleSubmit(onSubmit)}>

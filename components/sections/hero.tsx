@@ -135,7 +135,7 @@ export function Hero() {
             }}  
             className="mt-12 flex flex-col sm:flex-row gap-4"
           >
-            <a href="#projects" className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-blue-700 shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)] hover:-translate-y-1 transition-all">
+            <a href="#contact" className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-blue-700 shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)] hover:-translate-y-1 transition-all">
               Initialize Project <ArrowRight className="w-4 h-4" />
             </a>
             <a href="#experience" className="flex items-center justify-center px-8 py-4 bg-white border border-zinc-200 text-zinc-800 font-bold uppercase tracking-wider text-sm rounded-full hover:bg-zinc-50 hover:shadow-md hover:-translate-y-1 transition-all">

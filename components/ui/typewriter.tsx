@@ -24,8 +24,10 @@ export function Typewriter() {
     if (isComplete) {
       timeoutId = setTimeout(() => setIsDeleting(true), 1500); // Wait before deleting
     } else if (isEmpty) {
-      setIsDeleting(false);
-      setPhraseIndex((prev) => (prev + 1) % phrases.length);
+      timeoutId = setTimeout(() => {
+        setIsDeleting(false);
+        setPhraseIndex((prev) => (prev + 1) % phrases.length);
+      }, 300); // Small pause before next word
     } else {
       timeoutId = setTimeout(() => {
         setCharIndex((prev) => prev + (isDeleting ? -1 : 1));
@@ -40,11 +42,11 @@ export function Typewriter() {
   const currentColor = phrases[phraseIndex].color;
 
   return (
-    <span className="inline-flex min-h-[1.1em] items-center">
-      <span className={`text-transparent bg-gradient-to-r bg-clip-text ${currentColor}`}>
+    <span className="inline-flex min-h-[1.1em] items-center text-[0.95em]">
+      <span className={`text-transparent bg-gradient-to-r bg-clip-text pr-1 ${currentColor}`}>
         {currentText}
       </span>
-      <span className="w-[0.1em] h-[0.8em] ml-1 bg-zinc-300 animate-[pulse_1s_infinite]"></span>
+      <span className="w-[0.08em] h-[0.9em] ml-1 bg-current opacity-80 animate-[pulse_1s_infinite]"></span>
     </span>
   );
 }

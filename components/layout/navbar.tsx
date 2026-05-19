@@ -33,6 +33,23 @@ const AnimatedLogo = () => {
   );
 };
 
+const NavLink = ({ href, onClick, children }: { href: string, onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void, children: React.ReactNode }) => (
+  <Link 
+    href={href} 
+    onClick={onClick} 
+    className="group relative px-4 py-2 text-zinc-500 hover:text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
+  >
+    <span className="relative z-10">{children}</span>
+    <motion.span 
+      className="absolute inset-0 bg-blue-50 rounded-full origin-center"
+      initial={{ scale: 0 }}
+      whileHover={{ scale: 1 }}
+      transition={{ duration: 0.2 }}
+      style={{ zIndex: 0 }}
+    />
+  </Link>
+);
+
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -70,23 +87,6 @@ export function Navbar() {
     }
   };
 
-  const NavLink = ({ href, targetId, children }: { href: string, targetId: string, children: React.ReactNode }) => (
-    <Link 
-      href={href} 
-      onClick={(e) => handleScrollTo(e, targetId)} 
-      className="group relative px-4 py-2 text-zinc-500 hover:text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
-    >
-      <span className="relative z-10">{children}</span>
-      <motion.span 
-        className="absolute inset-0 bg-blue-50 rounded-full origin-center"
-        initial={{ scale: 0 }}
-        whileHover={{ scale: 1 }}
-        transition={{ duration: 0.2 }}
-        style={{ zIndex: 0 }}
-      />
-    </Link>
-  );
-
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 lg:pt-6 pointer-events-none">
       <motion.header 
@@ -110,10 +110,10 @@ export function Navbar() {
           
           {/* Desktop Nav */}
           <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-500">
-            <NavLink href="/#about" targetId="about">About</NavLink>
-            <NavLink href="/#services" targetId="services">Services</NavLink>
-            <NavLink href="/#experience" targetId="experience">Experience</NavLink>
-            <NavLink href="/#projects" targetId="projects">Work</NavLink>
+            <NavLink href="/#about" onClick={(e) => handleScrollTo(e, 'about')}>About</NavLink>
+            <NavLink href="/#services" onClick={(e) => handleScrollTo(e, 'services')}>Services</NavLink>
+            <NavLink href="/#experience" onClick={(e) => handleScrollTo(e, 'experience')}>Experience</NavLink>
+            <NavLink href="/#projects" onClick={(e) => handleScrollTo(e, 'projects')}>Work</NavLink>
           </nav>
           
           <div className="hidden md:block">

@@ -13,7 +13,9 @@ type ContactFormData = {
 };
 
 export function Contact() {
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ContactFormData>();
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
+    mode: "onChange"
+  });
 
   const onSubmit = (data: ContactFormData) => {
     trackEvent("contact_form_submitted", { hasMessage: !!data.message });
@@ -85,7 +87,10 @@ export function Contact() {
                 placeholder="Message Payload" 
                 rows={4}
                 aria-invalid={errors.message ? "true" : "false"}
-                {...register("message", { required: "Message payload required" })}
+                {...register("message", { 
+                  required: "Message payload required",
+                  validate: (value) => value.trim().length > 0 || "Message payload cannot be empty"
+                })}
                 className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm resize-none"
               />
               {errors.message && <p className="text-rose-500 font-mono text-[10px] uppercase tracking-widest mt-1 ml-1" role="alert">{errors.message.message}</p>}

@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { fadeUp } from "@/animations/variants";
 import { Mail, ArrowRight } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { trackEvent } from "@/lib/analytics";
 
 type ContactFormData = {
   name: string;
@@ -15,6 +16,7 @@ export function Contact() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ContactFormData>();
 
   const onSubmit = (data: ContactFormData) => {
+    trackEvent("contact_form_submitted", { hasMessage: !!data.message });
     // Implement actual transmission logic here
     console.log("Payload data:", data);
   };

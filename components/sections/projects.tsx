@@ -5,6 +5,7 @@ import { fadeIn, staggerContainer } from "@/animations/variants";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 
 const projects = [
   {
@@ -56,6 +57,7 @@ export function Projects() {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("project_clicked", { title: project.title })}
               variants={fadeIn} 
               className="group cursor-pointer block focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-xl"
             >
@@ -89,7 +91,12 @@ export function Projects() {
               <p className="text-xs font-mono text-zinc-600 tracking-widest uppercase">{project.category}</p>
             </motion.a>
           ) : (
-            <motion.div key={i} variants={fadeIn} className="group cursor-pointer">
+            <motion.div 
+              key={i} 
+              variants={fadeIn} 
+              onClick={() => trackEvent("project_clicked", { title: project.title })}
+              className="group cursor-pointer"
+            >
               <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6 border border-zinc-200 shadow-sm bg-zinc-100 group-hover:shadow-lg transition-all">
                 <div className="absolute inset-0 bg-blue-600/5 mix-blend-multiply group-hover:bg-transparent transition-all z-10" />
                 <Image 

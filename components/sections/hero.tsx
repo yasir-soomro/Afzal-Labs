@@ -6,6 +6,7 @@ import { fadeUp, staggerContainer } from "@/animations/variants";
 import { ArrowRight, Terminal, BrainCircuit, Activity, Cpu } from "lucide-react";
 import { Typewriter } from "@/components/ui/typewriter";
 import { HeroLottie } from "@/components/ui/hero-lottie";
+import { trackEvent } from "@/lib/analytics";
 
 function MagneticCard({ children, className }: { children: React.ReactNode, className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -142,6 +143,7 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#contact" 
+              onClick={() => trackEvent("hero_cta_clicked", { action: "initialize_project" })}
               className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-blue-700 shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)] transition-all"
             >
               Initialize Project <ArrowRight className="w-4 h-4" />
@@ -150,6 +152,7 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#experience" 
+              onClick={() => trackEvent("hero_cta_clicked", { action: "view_architecture" })}
               className="flex items-center justify-center px-8 py-4 bg-white border border-zinc-200 text-zinc-800 font-bold uppercase tracking-wider text-sm rounded-full hover:bg-zinc-50 hover:shadow-md transition-all"
             >
               View Architecture

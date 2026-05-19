@@ -41,6 +41,8 @@ export function Hero() {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, 200]);
   const y2 = useTransform(scrollY, [0, 1000], [0, -200]);
+  const yText = useTransform(scrollY, [0, 1000], [0, 100]);
+  const yCards = useTransform(scrollY, [0, 1000], [0, -100]);
 
   return (
     <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden w-full max-w-7xl mx-auto px-4 md:px-10 min-h-[90vh] flex items-center">
@@ -71,6 +73,7 @@ export function Hero() {
               transition: { staggerChildren: 0.15, delayChildren: 0.2 } 
             }
           }}
+          style={{ y: yText }}
           className="w-full lg:w-3/5 relative z-20"
         >
           <motion.div 
@@ -135,12 +138,22 @@ export function Hero() {
             }}  
             className="mt-12 flex flex-col sm:flex-row gap-4"
           >
-            <a href="#contact" className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-blue-700 shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)] hover:-translate-y-1 transition-all">
+            <motion.a 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="#contact" 
+              className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-blue-700 shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)] transition-all"
+            >
               Initialize Project <ArrowRight className="w-4 h-4" />
-            </a>
-            <a href="#experience" className="flex items-center justify-center px-8 py-4 bg-white border border-zinc-200 text-zinc-800 font-bold uppercase tracking-wider text-sm rounded-full hover:bg-zinc-50 hover:shadow-md hover:-translate-y-1 transition-all">
+            </motion.a>
+            <motion.a 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="#experience" 
+              className="flex items-center justify-center px-8 py-4 bg-white border border-zinc-200 text-zinc-800 font-bold uppercase tracking-wider text-sm rounded-full hover:bg-zinc-50 hover:shadow-md transition-all"
+            >
               View Architecture
-            </a>
+            </motion.a>
           </motion.div>
         </motion.div>
 
@@ -150,12 +163,23 @@ export function Hero() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.5 }}
+          style={{ y: yCards }}
           className="hidden lg:flex w-full lg:w-2/5 relative h-[500px] items-center justify-center mt-20 lg:mt-0"
         >
           {/* Main Visual Node */}
-          <div className="absolute w-[300px] h-[300px] border-[1px] border-blue-200/50 rounded-[40px] rotate-12 flex items-center justify-center bg-gradient-to-tr from-blue-50/50 to-indigo-50/20 shadow-2xl backdrop-blur-xl transition-all duration-700 hover:rotate-0 hover:scale-105 overflow-hidden">
-             <HeroLottie />
-          </div>
+          <motion.div
+            animate={{ y: [0, -20, 0], rotateZ: [12, -5, 12] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute z-10"
+          >
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-[300px] h-[300px] border-[1px] border-blue-200/50 rounded-[40px] flex items-center justify-center bg-gradient-to-tr from-blue-50/50 to-indigo-50/20 shadow-2xl backdrop-blur-xl overflow-hidden cursor-pointer"
+            >
+               <HeroLottie />
+            </motion.div>
+          </motion.div>
 
           <motion.div 
             animate={{ y: [0, -15, 0] }}

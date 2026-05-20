@@ -17,8 +17,8 @@ export function About() {
         <motion.div variants={fadeUp} className="relative aspect-square w-full max-w-md mx-auto md:mx-0 rounded-2xl overflow-hidden border border-zinc-200 group shadow-lg">
           <div className="absolute inset-0 bg-gradient-to-tr from-blue-200/40 to-indigo-200/40 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-700" />
           <Image 
-            src="https://picsum.photos/seed/developer/800/800" 
-            alt="Full Stack Agentic AI Engineer" 
+            src="/about-image.png" 
+            alt="My Profile Picture" 
             fill 
             className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105"
             referrerPolicy="no-referrer"

@@ -160,10 +160,35 @@ export function Navbar() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div 
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 10, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95, transition: { duration: 0.2 } }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={{
+                hidden: { 
+                  opacity: 0, 
+                  y: -20, 
+                  scale: 0.95,
+                  transition: { 
+                    duration: 0.2,
+                    ease: "easeIn",
+                    when: "afterChildren",
+                    staggerChildren: 0.05,
+                    staggerDirection: -1
+                  }
+                },
+                visible: { 
+                  opacity: 1, 
+                  y: 10, 
+                  scale: 1,
+                  transition: { 
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 24,
+                    when: "beforeChildren",
+                    staggerChildren: 0.05
+                  }
+                }
+              }}
               className="absolute top-full left-4 right-4 bg-white shadow-2xl border border-zinc-100 rounded-3xl py-8 px-6 flex flex-col gap-6 md:hidden origin-top z-50 pointer-events-auto"
             >
               <nav aria-label="Mobile Navigation" className="flex flex-col gap-2 text-sm font-mono uppercase tracking-widest text-zinc-500 text-center">
@@ -172,13 +197,13 @@ export function Navbar() {
                   { label: "Services", href: "/services" },
                   { label: "Experience", href: "/experience" },
                   { label: "Work", href: "/projects" },
-                ].map((item, index) => (
+                ].map((item) => (
                   <motion.div
                     key={item.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20, transition: { duration: 0.15, delay: 0 } }}
-                    transition={{ duration: 0.4, delay: 0.1 + index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                    variants={{
+                      hidden: { opacity: 0, x: -20, transition: { duration: 0.15 } },
+                      visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+                    }}
                   >
                     <Link 
                       href={item.href} 
@@ -191,10 +216,10 @@ export function Navbar() {
                 ))}
                 
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10, transition: { duration: 0.15 } }}
-                  transition={{ duration: 0.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  variants={{
+                    hidden: { opacity: 0, y: 10, transition: { duration: 0.15 } },
+                    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+                  }}
                 >
                   <Link 
                     href="/contact" 

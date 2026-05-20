@@ -142,26 +142,24 @@ export function Hero() {
             }}  
             className="mt-12 flex flex-col sm:flex-row gap-4"
           >
-            <Link href="/contact" passHref legacyBehavior>
-              <motion.a 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link 
+                href="/contact"
                 onClick={() => trackEvent("hero_cta_clicked", { action: "initialize_project" })}
-                className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-blue-700 shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)] transition-all"
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-blue-700 shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)] transition-all h-full"
               >
                 Initialize Project <ArrowRight className="w-4 h-4" />
-              </motion.a>
-            </Link>
-            <Link href="/experience" passHref legacyBehavior>
-              <motion.a 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link 
+                href="/experience"
                 onClick={() => trackEvent("hero_cta_clicked", { action: "view_architecture" })}
-                className="flex items-center justify-center px-8 py-4 bg-white border border-zinc-200 text-zinc-800 font-bold uppercase tracking-wider text-sm rounded-full hover:bg-zinc-50 hover:shadow-md transition-all"
+                className="flex items-center justify-center px-8 py-4 bg-white border border-zinc-200 text-zinc-800 font-bold uppercase tracking-wider text-sm rounded-full hover:bg-zinc-50 hover:shadow-md transition-all h-full"
               >
                 View Architecture
-              </motion.a>
-            </Link>
+              </Link>
+            </motion.div>
           </motion.div>
         </motion.div>
 

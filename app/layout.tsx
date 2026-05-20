@@ -1,5 +1,6 @@
 import type {Metadata} from 'next';
 import './globals.css'; // Global styles
+import { CustomCursor } from '@/components/ui/custom-cursor';
 
 export const metadata: Metadata = {
   title: {
@@ -47,6 +48,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         >
           Skip to main content
         </a>
+        <CustomCursor />
         {children}
       </body>
     </html>

@@ -4,8 +4,8 @@ import { motion } from "motion/react";
 
 const techList = [
   "Next.js", "TypeScript", "React", "Node.js", "Python", 
-  "TensorFlow", "PyTorch", "AWS", "GCP", "PostgreSQL", 
-  "Redis", "Docker", "Kubernetes", "GraphQL"
+  "Gemini", "Langchain", "OpenAI", "TensorFlow", "PyTorch", 
+  "AWS", "GCP", "PostgreSQL", "Redis", "Docker"
 ];
 
 // Duplicate list to create a seamless loop

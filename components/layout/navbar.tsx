@@ -74,30 +74,6 @@ export function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    setMobileMenuOpen(false);
-    
-    if (pathname !== "/") {
-      return; // Let standard Link navigation handle routing to home page then hash
-    }
-
-    e.preventDefault();
-    
-    if (targetId === "top") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-    
-    const elem = document.getElementById(targetId);
-    if (elem) {
-      const offsetTop = elem.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 lg:pt-6 pointer-events-none">
       <motion.header 
@@ -114,21 +90,21 @@ export function Navbar() {
           }}
           className="w-full rounded-2xl md:rounded-full border border-transparent flex items-center justify-between px-4 md:px-6 h-16 transition-colors duration-300"
         >
-          <Link href="/" onClick={(e) => handleScrollTo(e, 'top')} className="group flex items-center gap-3 text-xl font-black tracking-tighter uppercase text-zinc-900 hover:text-blue-600 transition-colors focus:outline-none rounded-full px-2 py-1">
+          <Link href="/" onClick={() => setMobileMenuOpen(false)} className="group flex items-center gap-3 text-xl font-black tracking-tighter uppercase text-zinc-900 hover:text-blue-600 transition-colors focus:outline-none rounded-full px-2 py-1">
             <AnimatedLogo />
             <span>Afzal <span className="text-blue-600">Labs</span></span>
           </Link>
           
           {/* Desktop Nav */}
           <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-500">
-            <NavLink href="/#about" onClick={(e) => handleScrollTo(e, 'about')}>About</NavLink>
-            <NavLink href="/#services" onClick={(e) => handleScrollTo(e, 'services')}>Services</NavLink>
-            <NavLink href="/#experience" onClick={(e) => handleScrollTo(e, 'experience')}>Experience</NavLink>
-            <NavLink href="/#projects" onClick={(e) => handleScrollTo(e, 'projects')}>Work</NavLink>
+            <NavLink href="/about" onClick={() => setMobileMenuOpen(false)}>About</NavLink>
+            <NavLink href="/services" onClick={() => setMobileMenuOpen(false)}>Services</NavLink>
+            <NavLink href="/experience" onClick={() => setMobileMenuOpen(false)}>Experience</NavLink>
+            <NavLink href="/projects" onClick={() => setMobileMenuOpen(false)}>Work</NavLink>
           </nav>
           
           <div className="hidden md:block">
-            <Link href="/#contact" onClick={(e) => handleScrollTo(e, 'contact')} role="button" aria-label="Navigate to contact section" className="px-6 py-2.5 bg-blue-600 text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-blue-700 hover:shadow-[0_0_20px_-5px_rgba(37,99,235,0.4)] transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 hover:-translate-y-0.5 inline-block">
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} role="button" aria-label="Navigate to contact section" className="flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-bold uppercase tracking-wider text-xs rounded-full hover:bg-blue-700 shadow-[0_0_20px_-5px_rgba(37,99,235,0.5)] hover:-translate-y-0.5 transition-all">
               Contact Me
             </Link>
           </div>
@@ -192,13 +168,13 @@ export function Navbar() {
             >
               <nav aria-label="Mobile Navigation" className="flex flex-col gap-2 text-sm font-mono uppercase tracking-widest text-zinc-500 text-center">
                 {[
-                  { label: "About", href: "/#about", targetId: "about" },
-                  { label: "Services", href: "/#services", targetId: "services" },
-                  { label: "Experience", href: "/#experience", targetId: "experience" },
-                  { label: "Work", href: "/#projects", targetId: "projects" },
+                  { label: "About", href: "/about" },
+                  { label: "Services", href: "/services" },
+                  { label: "Experience", href: "/experience" },
+                  { label: "Work", href: "/projects" },
                 ].map((item, index) => (
                   <motion.div
-                    key={item.targetId}
+                    key={item.href}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20, transition: { duration: 0.15, delay: 0 } }}
@@ -206,7 +182,7 @@ export function Navbar() {
                   >
                     <Link 
                       href={item.href} 
-                      onClick={(e) => handleScrollTo(e, item.targetId)} 
+                      onClick={() => setMobileMenuOpen(false)} 
                       className="block hover:text-blue-600 hover:bg-blue-50/50 transition-colors py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
                     >
                       {item.label}
@@ -221,8 +197,8 @@ export function Navbar() {
                   transition={{ duration: 0.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <Link 
-                    href="/#contact" 
-                    onClick={(e) => handleScrollTo(e, 'contact')} 
+                    href="/contact" 
+                    onClick={() => setMobileMenuOpen(false)} 
                     role="button" 
                     aria-label="Navigate to contact section" 
                     className="mx-auto mt-6 px-8 py-4 bg-blue-600 text-white rounded-full text-xs font-bold uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm w-full block shadow-[0_0_20px_-5px_rgba(37,99,235,0.4)]"

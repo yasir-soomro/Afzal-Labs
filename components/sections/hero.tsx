@@ -7,6 +7,7 @@ import { ArrowRight, Terminal, BrainCircuit, Activity, Cpu } from "lucide-react"
 import { Typewriter } from "@/components/ui/typewriter";
 import dynamic from "next/dynamic";
 import { trackEvent } from "@/lib/analytics";
+import Link from "next/link";
 
 const HeroLottie = dynamic(() => import("@/components/ui/hero-lottie").then(mod => mod.HeroLottie), { ssr: false });
 
@@ -141,24 +142,26 @@ export function Hero() {
             }}  
             className="mt-12 flex flex-col sm:flex-row gap-4"
           >
-            <motion.a 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#contact" 
-              onClick={() => trackEvent("hero_cta_clicked", { action: "initialize_project" })}
-              className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-blue-700 shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)] transition-all"
-            >
-              Initialize Project <ArrowRight className="w-4 h-4" />
-            </motion.a>
-            <motion.a 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#experience" 
-              onClick={() => trackEvent("hero_cta_clicked", { action: "view_architecture" })}
-              className="flex items-center justify-center px-8 py-4 bg-white border border-zinc-200 text-zinc-800 font-bold uppercase tracking-wider text-sm rounded-full hover:bg-zinc-50 hover:shadow-md transition-all"
-            >
-              View Architecture
-            </motion.a>
+            <Link href="/contact" passHref legacyBehavior>
+              <motion.a 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => trackEvent("hero_cta_clicked", { action: "initialize_project" })}
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold uppercase tracking-wider text-sm rounded-full hover:bg-blue-700 shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)] transition-all"
+              >
+                Initialize Project <ArrowRight className="w-4 h-4" />
+              </motion.a>
+            </Link>
+            <Link href="/experience" passHref legacyBehavior>
+              <motion.a 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => trackEvent("hero_cta_clicked", { action: "view_architecture" })}
+                className="flex items-center justify-center px-8 py-4 bg-white border border-zinc-200 text-zinc-800 font-bold uppercase tracking-wider text-sm rounded-full hover:bg-zinc-50 hover:shadow-md transition-all"
+              >
+                View Architecture
+              </motion.a>
+            </Link>
           </motion.div>
         </motion.div>
 

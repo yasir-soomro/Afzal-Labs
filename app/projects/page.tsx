@@ -1,5 +1,3 @@
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
 import Image from "next/image";
 
 export const metadata = {
@@ -48,13 +46,11 @@ const allProjects = [
 
 export default function ProjectArchivePage() {
   return (
-    <div className="w-full min-h-screen bg-zinc-50 text-zinc-900 font-sans flex flex-col overflow-x-hidden relative selection:bg-blue-200 selection:text-blue-900">
-      <Navbar />
-      <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-10 pt-32 pb-20" tabIndex={-1}>
-        <div className="mb-16 border-b border-zinc-200 pb-8">
-          <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase text-zinc-900">Project Archive</h1>
-          <p className="mt-4 text-sm font-mono text-zinc-500 uppercase tracking-widest max-w-2xl">A comprehensive historical record of shipped production code, spanning complex AI integrations to resilient enterprise frontends.</p>
-        </div>
+    <main id="main-content" className="w-full max-w-7xl mx-auto px-4 md:px-10 pt-32 pb-20" tabIndex={-1}>
+      <div className="mb-16 border-b border-zinc-200 pb-8">
+        <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase text-zinc-900">Project Archive</h1>
+        <p className="mt-4 text-sm font-mono text-zinc-500 uppercase tracking-widest max-w-2xl">A comprehensive historical record of shipped production code, spanning complex AI integrations to resilient enterprise frontends.</p>
+      </div>
         
         <div className="flex flex-col gap-12">
           {allProjects.map((project, i) => (
@@ -100,8 +96,6 @@ export default function ProjectArchivePage() {
             </div>
           ))}
         </div>
-      </main>
-      <Footer />
-    </div>
+    </main>
   );
 }

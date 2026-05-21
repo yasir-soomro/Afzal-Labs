@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { fadeUp } from "@/animations/variants";
-import { Mail, ArrowRight } from "lucide-react";
+import { Mail, ArrowRight, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { trackEvent } from "@/lib/analytics";
 import { toast } from "sonner";
@@ -126,9 +126,20 @@ export function Contact() {
             <button 
               type="submit"
               disabled={isSubmitting}
-              className="w-full group flex items-center justify-center gap-2 px-8 py-4 bg-zinc-900 text-white font-bold uppercase tracking-wider text-sm rounded-lg hover:bg-zinc-800 hover:shadow-lg transition-all disabled:opacity-75 disabled:cursor-not-allowed"
+              className="w-full group relative overflow-hidden flex items-center justify-center gap-2 px-8 py-4 bg-zinc-900 text-white font-bold uppercase tracking-wider text-sm rounded-lg hover:bg-zinc-800 hover:shadow-lg transition-all disabled:opacity-75 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? "Transmitting..." : "Transmit Payload"} {!isSubmitting && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
+              <div className={`absolute inset-0 bg-blue-600/20 origin-left transition-transform duration-[800ms] ease-out ${isSubmitting ? 'scale-x-100' : 'scale-x-0'} pointer-events-none`} />
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin relative z-10" />
+                  <span className="relative z-10">Transmitting...</span>
+                </>
+              ) : (
+                <>
+                  <span className="relative z-10">Transmit Payload</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
+                </>
+              )}
             </button>
           </form>
         </div>

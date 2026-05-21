@@ -3,6 +3,26 @@
 import { motion } from "motion/react";
 import { fadeUp, staggerContainer } from "@/animations/variants";
 import Image from "next/image";
+import { FAQAccordion } from "@/components/ui/faq-accordion";
+
+const faqs = [
+  {
+    question: "What is your primary tech stack?",
+    answer: "I specialize in React, Next.js, and TypeScript on the frontend, with Node.js and specialized Agentic AI integrations on the backend. I prefer Tailwind CSS for styling to ensure rapid, scalable design system delivery."
+  },
+  {
+    question: "Do you take on freelance projects?",
+    answer: "Yes, I take on select freelance projects that align with my expertise in building high-performance, AI-driven applications. Feel free to use the contact form to discuss your requirements."
+  },
+  {
+    question: "What is your design philosophy?",
+    answer: "I prioritize clean, brutalist-inspired minimalism with intentional typography and whitespace. The goal is to create products that feel polished and professional, avoiding unnecessary visual noise."
+  },
+  {
+    question: "How do you integrate AI into your products?",
+    answer: "I build robust integrations using modern SDKs (like @google/genai) on server-side environments, ensuring sensitive keys remain secure while delivering robust, responsive AI capabilities to the user interface."
+  }
+];
 
 export function About() {
   return (
@@ -49,6 +69,23 @@ export function About() {
             </div>
           </motion.div>
         </div>
+      </motion.div>
+
+      <motion.div 
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="mt-24 max-w-3xl mx-auto w-full"
+      >
+        <motion.div variants={fadeUp} className="text-center mb-10">
+          <h3 className="text-2xl font-black tracking-tighter uppercase text-zinc-900 mb-2">Frequently Asked Questions</h3>
+          <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest">Common inquiries about my process</p>
+        </motion.div>
+        
+        <motion.div variants={fadeUp}>
+          <FAQAccordion items={faqs} />
+        </motion.div>
       </motion.div>
     </section>
   );

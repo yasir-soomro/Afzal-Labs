@@ -11,6 +11,7 @@ type ContactFormData = {
   name: string;
   email: string;
   message: string;
+  document?: FileList;
 };
 
 export function Contact() {
@@ -98,6 +99,29 @@ export function Contact() {
                 className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm resize-none"
               />
               {errors.message && <p className="text-rose-500 font-mono text-[10px] uppercase tracking-widest mt-1 ml-1" role="alert">{errors.message.message}</p>}
+            </div>
+            <div>
+              <label htmlFor="document" className="sr-only">Technical Requirements / Project Docs</label>
+              <input 
+                id="document"
+                type="file" 
+                accept=".pdf,.doc,.docx,.txt"
+                aria-invalid={errors.document ? "true" : "false"}
+                {...register("document", { 
+                  validate: (value) => {
+                    if (!value || value.length === 0) return true;
+                    const file = value[0];
+                    const maxSize = 5 * 1024 * 1024; // 5MB
+                    if (file.size > maxSize) return "File size must be less than 5MB";
+                    const fileExt = file.name.split('.').pop()?.toLowerCase();
+                    if (!['pdf', 'doc', 'docx', 'txt'].includes(fileExt || '')) return "Only PDF, DOC, DOCX, and TXT files are allowed";
+                    return true;
+                  }
+                })}
+                className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 text-zinc-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm file:mr-4 file:py-3 file:px-4 file:rounded-l-lg file:border-0 file:border-r file:border-zinc-200 file:text-xs file:font-bold file:uppercase file:tracking-wider file:bg-zinc-100 file:text-zinc-700 hover:file:bg-zinc-200 cursor-pointer p-0"
+              />
+              {errors.document && <p className="text-rose-500 font-mono text-[10px] uppercase tracking-widest mt-1 ml-1" role="alert">{errors.document.message}</p>}
+              <p className="text-zinc-500 font-mono text-[10px] tracking-widest mt-2 ml-1">OPTIONAL: ATTACH SPECS OR ROSTER. MAX 5MB (.PDF, .DOCX, .TXT)</p>
             </div>
             <button 
               type="submit"

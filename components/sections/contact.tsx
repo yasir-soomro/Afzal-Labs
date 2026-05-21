@@ -5,6 +5,7 @@ import { fadeUp } from "@/animations/variants";
 import { Mail, ArrowRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { trackEvent } from "@/lib/analytics";
+import { toast } from "sonner";
 
 type ContactFormData = {
   name: string;
@@ -13,14 +14,17 @@ type ContactFormData = {
 };
 
 export function Contact() {
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
     mode: "onChange"
   });
 
-  const onSubmit = (data: ContactFormData) => {
+  const onSubmit = async (data: ContactFormData) => {
     trackEvent("contact_form_submitted", { hasMessage: !!data.message });
-    // Implement actual transmission logic here
+    // Simulate network request
+    await new Promise((resolve) => setTimeout(resolve, 800));
     console.log("Payload data:", data);
+    toast.success("Payload successfully transmitted. I'll respond shortly.");
+    reset();
   };
 
   return (

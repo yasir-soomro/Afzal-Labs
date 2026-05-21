@@ -41,6 +41,7 @@ export const metadata: Metadata = {
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { GridBackground } from '@/components/ui/grid-background';
+import { Toaster } from 'sonner';
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
@@ -53,6 +54,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           Skip to main content
         </a>
         <CustomCursor />
+        <Toaster position="bottom-right" />
         <GridBackground />
         <Navbar />
         <div className="flex-1 w-full flex flex-col items-center">

@@ -30,7 +30,7 @@ export function Contact() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="relative rounded-3xl overflow-hidden border border-zinc-200 bg-white shadow-2xl shadow-zinc-200/50 p-8 md:p-16 text-center"
+        className="relative rounded-3xl overflow-hidden border border-zinc-200 bg-white shadow-2xl shadow-zinc-200/50 p-6 sm:p-8 md:p-16 text-center"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-indigo-50/50 pointer-events-none" />
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-400/20 rounded-full blur-[100px] pointer-events-none" />
@@ -43,12 +43,12 @@ export function Contact() {
           <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase text-zinc-900 mb-6">
             Initialize Contact
           </h2>
-          <p className="text-zinc-600 mb-10 text-lg">
+          <p className="text-zinc-600 mb-8 md:mb-10 text-base md:text-lg">
             Ready to architect the next-generation system? Let&apos;s discuss your project requirements and technical constraints.
           </p>
           
           <form className="max-w-md mx-auto space-y-4 text-left" onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className="sr-only">Name</label>
                 <input 

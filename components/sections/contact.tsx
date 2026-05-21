@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { fadeUp } from "@/animations/variants";
-import { Mail, ArrowRight, Loader2 } from "lucide-react";
+import { Mail, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { trackEvent } from "@/lib/analytics";
 import { toast } from "sonner";
@@ -15,6 +16,7 @@ type ContactFormData = {
 };
 
 export function Contact() {
+  const [isSuccess, setIsSuccess] = useState(false);
   const { register, handleSubmit, reset, watch, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
     mode: "onChange",
     defaultValues: {
@@ -32,7 +34,11 @@ export function Contact() {
     await new Promise((resolve) => setTimeout(resolve, 800));
     console.log("Payload data:", data);
     toast.success("Payload successfully transmitted. I'll respond shortly.");
-    reset();
+    setIsSuccess(true);
+    setTimeout(() => {
+      setIsSuccess(false);
+      reset();
+    }, 3000);
   };
 
   return (
@@ -59,7 +65,16 @@ export function Contact() {
             Ready to architect the next-generation system? Let&apos;s discuss your project requirements and technical constraints.
           </p>
           
-          <form className="max-w-md mx-auto space-y-4 text-left" onSubmit={handleSubmit(onSubmit)}>
+          <div className="relative min-h-[520px]">
+            <AnimatePresence mode="wait">
+              {!isSuccess ? (
+                <motion.div
+                  key="form"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+                >
+                  <form className="max-w-md mx-auto space-y-4 text-left" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className="sr-only">Name</label>
@@ -158,6 +173,43 @@ export function Contact() {
               )}
             </button>
           </form>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2 } }}
+                  className="absolute inset-0 flex flex-col items-center justify-center text-center"
+                >
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
+                    className="w-24 h-24 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mb-6 mx-auto shadow-inner"
+                  >
+                    <CheckCircle2 className="w-12 h-12" />
+                  </motion.div>
+                  <motion.h3 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-2xl font-black uppercase tracking-tighter text-zinc-900 mb-2"
+                  >
+                    Transmission Successful
+                  </motion.h3>
+                  <motion.p 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="text-zinc-500 font-mono tracking-widest text-xs uppercase"
+                  >
+                    Payload received. Standby for response.
+                  </motion.p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </motion.div>
     </section>

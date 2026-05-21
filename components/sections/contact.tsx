@@ -15,9 +15,16 @@ type ContactFormData = {
 };
 
 export function Contact() {
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
-    mode: "onChange"
+  const { register, handleSubmit, reset, watch, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
+    mode: "onChange",
+    defaultValues: {
+      message: ""
+    }
   });
+
+  const messageValue = watch("message");
+  const messageLength = messageValue ? messageValue.length : 0;
+  const maxMessageLength = 1000;
 
   const onSubmit = async (data: ContactFormData) => {
     trackEvent("contact_form_submitted", { hasMessage: !!data.message });
@@ -86,7 +93,12 @@ export function Contact() {
               </div>
             </div>
             <div>
-              <label htmlFor="message" className="sr-only">Message Payload</label>
+              <div className="flex justify-between items-baseline mb-1">
+                <label htmlFor="message" className="sr-only">Message Payload</label>
+                <span className={`text-[10px] font-mono tracking-widest uppercase ${messageLength > maxMessageLength * 0.9 ? 'text-orange-500' : 'text-zinc-500'}`}>
+                  {messageLength} / {maxMessageLength}
+                </span>
+              </div>
               <textarea 
                 id="message"
                 placeholder="Message Payload" 
@@ -94,6 +106,10 @@ export function Contact() {
                 aria-invalid={errors.message ? "true" : "false"}
                 {...register("message", { 
                   required: "Message payload required",
+                  maxLength: {
+                    value: maxMessageLength,
+                    message: "Message payload exceeds maximum length limit"
+                  },
                   validate: (value) => value.trim().length > 0 || "Message payload cannot be empty"
                 })}
                 className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 hover:border-zinc-300 transition-all font-mono text-sm resize-none"

@@ -43,11 +43,13 @@ import { Footer } from '@/components/layout/footer';
 import { GridBackground } from '@/components/ui/grid-background';
 import { Toaster } from 'sonner';
 import { LanguageProvider } from '@/providers/language-provider';
+import { ScrollProgress } from '@/components/ui/scroll-progress';
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" className="bg-zinc-50 h-full m-0 antialiased scroll-smooth">
       <body suppressHydrationWarning className="h-full m-0 bg-zinc-50 text-zinc-900 flex flex-col font-sans selection:bg-blue-200 selection:text-blue-900">
+        <ScrollProgress />
         <LanguageProvider>
           <a 
             href="#main-content" 

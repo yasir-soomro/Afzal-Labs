@@ -6,29 +6,10 @@ import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const AnimatedLogo = () => {
+const Logo = () => {
   return (
-    <div style={{ perspective: "800px" }} className="w-8 h-8 flex-shrink-0">
-      <motion.div
-        className="w-full h-full relative"
-        animate={{
-          rotateX: [0, 180, 360],
-          rotateY: [0, 180, 360]
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        style={{ transformStyle: "preserve-3d" }}
-      >
-        <div className="absolute inset-0 border-[3px] border-blue-600 bg-blue-600/10 rounded-sm" style={{ transform: "translateZ(16px)" }} />
-        <div className="absolute inset-0 border-[3px] border-indigo-600 bg-indigo-600/10 rounded-sm" style={{ transform: "rotateY(180deg) translateZ(16px)" }} />
-        <div className="absolute inset-0 border-[3px] border-cyan-500 bg-cyan-500/10 rounded-sm" style={{ transform: "rotateX(90deg) translateZ(16px)" }} />
-        <div className="absolute inset-0 border-[3px] border-blue-400 bg-blue-400/10 rounded-sm" style={{ transform: "rotateX(-90deg) translateZ(16px)" }} />
-        <div className="absolute inset-0 border-[3px] border-indigo-400 bg-indigo-400/10 rounded-sm" style={{ transform: "rotateY(90deg) translateZ(16px)" }} />
-        <div className="absolute inset-0 border-[3px] border-blue-500 bg-blue-500/10 rounded-sm" style={{ transform: "rotateY(-90deg) translateZ(16px)" }} />
-      </motion.div>
+    <div className="w-8 h-8 rounded-lg bg-zinc-900 text-white flex items-center justify-center font-bold text-xs tracking-widest shadow-sm group-hover:scale-105 transition-transform duration-300">
+      AL
     </div>
   );
 };
@@ -90,9 +71,9 @@ export function Navbar() {
           }}
           className="w-full rounded-2xl md:rounded-full border border-transparent flex items-center justify-between px-4 md:px-6 h-16 transition-colors duration-300"
         >
-          <Link href="/" onClick={() => setMobileMenuOpen(false)} className="group flex items-center gap-3 text-xl font-black tracking-tighter uppercase text-zinc-900 hover:text-blue-600 transition-colors focus:outline-none rounded-full px-2 py-1">
-            <AnimatedLogo />
-            <span>Afzal <span className="text-blue-600">Labs</span></span>
+          <Link href="/" onClick={() => setMobileMenuOpen(false)} className="group flex items-center gap-3 text-lg font-black tracking-tighter uppercase text-zinc-900 hover:text-zinc-600 transition-colors focus:outline-none rounded-full px-2 py-1">
+            <Logo />
+            <span>Afzal</span>
           </Link>
           
           {/* Desktop Nav */}

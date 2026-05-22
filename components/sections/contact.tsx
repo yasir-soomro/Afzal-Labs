@@ -24,6 +24,7 @@ export function Contact() {
     }
   });
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const messageValue = watch("message");
   const messageLength = messageValue ? messageValue.length : 0;
   const maxMessageLength = 1000;

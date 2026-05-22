@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLanguage } from "@/providers/language-provider";
 
 const Logo = () => {
+
   return (
     <div className="w-8 h-8 rounded-lg bg-zinc-900 text-white flex items-center justify-center font-bold text-xs tracking-widest shadow-sm group-hover:scale-105 transition-transform duration-300">
       AL
@@ -30,6 +32,28 @@ const NavLink = ({ href, onClick, children }: { href: string, onClick: (e: React
     />
   </Link>
 );
+
+const LanguageToggle = () => {
+  const { language, setLanguage } = useLanguage();
+  const langs = ["en", "es", "fr", "de"] as const;
+  
+  const toggleLanguage = () => {
+    const currentIndex = langs.indexOf(language);
+    const nextIndex = (currentIndex + 1) % langs.length;
+    setLanguage(langs[nextIndex]);
+  };
+
+  return (
+    <button 
+      onClick={toggleLanguage}
+      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase tracking-widest text-zinc-500 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full transition-colors"
+      aria-label={`Current language: ${language}. Click to change.`}
+    >
+      <Globe className="w-4 h-4" />
+      <span>{language}</span>
+    </button>
+  );
+};
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -84,43 +108,47 @@ export function Navbar() {
             <NavLink href="/projects" onClick={() => setMobileMenuOpen(false)}>Work</NavLink>
           </nav>
           
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-4">
+            <LanguageToggle />
             <Link href="/contact" onClick={() => setMobileMenuOpen(false)} role="button" aria-label="Navigate to contact section" className="flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-bold uppercase tracking-wider text-xs rounded-full hover:bg-blue-700 shadow-[0_0_20px_-5px_rgba(37,99,235,0.5)] hover:-translate-y-0.5 transition-all">
               Contact Me
             </Link>
           </div>
 
           {/* Mobile Toggle */}
-          <button 
-            aria-expanded={mobileMenuOpen}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            className="md:hidden text-zinc-900 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full relative w-10 h-10 flex items-center justify-center hover:bg-zinc-100 transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <AnimatePresence mode="wait">
-              {mobileMenuOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X className="w-5 h-5" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu className="w-5 h-5" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <LanguageToggle />
+            <button 
+              aria-expanded={mobileMenuOpen}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              className="md:hidden text-zinc-900 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full relative w-10 h-10 flex items-center justify-center hover:bg-zinc-100 transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <AnimatePresence mode="wait">
+                {mobileMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="w-5 h-5" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="w-5 h-5" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </button>
+          </div>
         </motion.div>
 
         {/* Mobile Menu Backdrop */}

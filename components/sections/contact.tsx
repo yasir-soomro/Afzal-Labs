@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { fadeUp } from "@/animations/variants";
 import { Mail, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { trackEvent } from "@/lib/analytics";
 import { toast } from "sonner";
+import { useReportWebVitals } from "next/web-vitals";
 
 type ContactFormData = {
   name: string;
@@ -17,6 +18,25 @@ type ContactFormData = {
 
 export function Contact() {
   const [isSuccess, setIsSuccess] = useState(false);
+  const interactionStartTime = useRef<number | null>(null);
+  
+  useReportWebVitals((metric) => {
+    trackEvent("contact_form_web_vitals", {
+      id: metric.id,
+      name: metric.name,
+      value: metric.value,
+      rating: metric.rating,
+      label: metric.navigationType,
+    });
+  });
+
+  const trackInteractionStart = useCallback(() => {
+    if (interactionStartTime.current === null) {
+      interactionStartTime.current = performance.now();
+      trackEvent("contact_form_interaction_started");
+    }
+  }, []);
+
   const { register, handleSubmit, reset, watch, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
     mode: "onChange",
     defaultValues: {
@@ -30,12 +50,31 @@ export function Contact() {
   const maxMessageLength = 1000;
 
   const onSubmit = async (data: ContactFormData) => {
-    trackEvent("contact_form_submitted", { hasMessage: !!data.message });
+    const submissionStartTime = performance.now();
+    const interactionLatency = interactionStartTime.current 
+      ? submissionStartTime - interactionStartTime.current 
+      : 0;
+
+    trackEvent("contact_form_submission_started", { 
+      hasMessage: !!data.message,
+      timeToSubmitMs: Math.round(interactionLatency)
+    });
+    
     // Simulate network request
     await new Promise((resolve) => setTimeout(resolve, 800));
+    
+    const submissionLatency = performance.now() - submissionStartTime;
+    
+    trackEvent("contact_form_submitted", { 
+      hasMessage: !!data.message,
+      submissionLatencyMs: Math.round(submissionLatency)
+    });
+    
     console.log("Payload data:", data);
     toast.success("Payload successfully transmitted. I'll respond shortly.");
     setIsSuccess(true);
+    interactionStartTime.current = null;
+    
     setTimeout(() => {
       setIsSuccess(false);
       reset();
@@ -75,7 +114,13 @@ export function Contact() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
                 >
-                  <form className="max-w-md mx-auto space-y-4 text-left" onSubmit={handleSubmit(onSubmit)}>
+                  <form 
+                    className="max-w-md mx-auto space-y-4 text-left" 
+                    onSubmit={handleSubmit(onSubmit)}
+                    onClick={trackInteractionStart}
+                    onChange={trackInteractionStart}
+                    onFocus={trackInteractionStart}
+                  >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className="sr-only">Name</label>

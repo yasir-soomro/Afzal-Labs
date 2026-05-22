@@ -27,7 +27,7 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
         return (
           <div 
             key={index} 
-            className="border border-zinc-200 rounded-xl overflow-hidden bg-white hover:border-zinc-300 transition-colors shadow-sm"
+            className={`border rounded-xl overflow-hidden transition-colors duration-300 shadow-sm ${isOpen ? 'bg-zinc-50 border-zinc-300' : 'bg-white border-zinc-200 hover:border-zinc-300'}`}
           >
             <button
               type="button"

@@ -6,6 +6,7 @@ import { Services } from "@/components/sections/services";
 import { Experience } from "@/components/sections/experience";
 import { Projects } from "@/components/sections/projects";
 import { Contact } from "@/components/sections/contact";
+import { Newsletter } from "@/components/sections/newsletter";
 
 export default function Page() {
   return (
@@ -17,6 +18,7 @@ export default function Page() {
       <Experience />
       <Projects />
       <Contact />
+      <Newsletter />
     </main>
   );
 }

@@ -108,7 +108,7 @@ export function Hero() {
                 transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
               }
             }}
-            className="text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[1.05] text-zinc-900"
+            className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[1.1] sm:leading-[1.05] text-zinc-900"
           >
             Architecting <br/>
             <Typewriter /> <br/>

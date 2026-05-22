@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { fadeIn, staggerContainer } from "@/animations/variants";
 import { ArrowUpRight } from "lucide-react";
@@ -29,7 +30,25 @@ const projects = [
   }
 ];
 
+const ProjectSkeleton = () => (
+  <div className="w-full">
+    <div className="w-full aspect-video rounded-xl bg-zinc-200 animate-pulse mb-6"></div>
+    <div className="flex justify-between items-center mb-2">
+      <div className="h-6 w-48 bg-zinc-200 rounded animate-pulse"></div>
+      <div className="h-5 w-5 bg-zinc-200 rounded animate-pulse"></div>
+    </div>
+    <div className="h-4 w-32 bg-zinc-200 rounded animate-pulse"></div>
+  </div>
+);
+
 export function Projects() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section id="projects" className="py-20 w-full max-w-7xl mx-auto px-4 md:px-10 mt-10">
       <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-zinc-200 pb-6">
@@ -50,7 +69,14 @@ export function Projects() {
         viewport={{ once: true, margin: "-100px" }}
         className="grid grid-cols-1 md:grid-cols-2 gap-8"
       >
-        {projects.map((project, i) => (
+        {isLoading ? (
+          <>
+            <ProjectSkeleton />
+            <ProjectSkeleton />
+            <ProjectSkeleton />
+          </>
+        ) : (
+          projects.map((project, i) => (
           project.link ? (
             <motion.a 
               key={i} 
@@ -127,7 +153,8 @@ export function Projects() {
               <p className="text-xs font-mono text-zinc-600 tracking-widest uppercase">{project.category}</p>
             </motion.div>
           )
-        ))}
+        ))
+        )}
       </motion.div>
     </section>
   );

@@ -126,8 +126,15 @@ export function Newsletter() {
                     type="email"
                     value={email}
                     onChange={(e) => {
-                      setEmail(e.target.value);
-                      if (status === "error") setStatus("idle");
+                      const newEmail = e.target.value;
+                      setEmail(newEmail);
+                      if (newEmail.length > 0 && !validateEmail(newEmail)) {
+                        setStatus("error");
+                        setErrorMessage("Please enter a valid email address");
+                      } else {
+                        setStatus("idle");
+                        setErrorMessage("");
+                      }
                     }}
                     disabled={status === "loading"}
                     placeholder="Enter email address"

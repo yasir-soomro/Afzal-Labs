@@ -1,15 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { fadeUp, staggerContainer } from "@/animations/variants";
 import { Mail, ArrowRight, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import Lottie from "lottie-react";
 
 export function Newsletter() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [successAnimation, setSuccessAnimation] = useState<any>(null);
+
+  useEffect(() => {
+    let ignore = false;
+    fetch('https://fonts.gstatic.com/s/e/notoemoji/latest/2705/lottie.json')
+      .then((res) => res.json())
+      .then((data) => {
+        if (!ignore) {
+          setSuccessAnimation(data);
+        }
+      })
+      .catch(console.error);
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   const validateEmail = (email: string) => {
     return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
@@ -81,9 +98,18 @@ export function Newsletter() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-green-50 text-green-700 py-4 px-6 rounded-lg border border-green-200 flex items-center justify-center gap-3 font-mono text-sm tracking-wide"
+                className="bg-green-50 text-green-700 py-4 px-6 rounded-lg border border-green-200 flex items-center justify-center gap-3 font-mono text-sm tracking-wide shadow-sm"
               >
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                {successAnimation ? (
+                  <Lottie 
+                    animationData={successAnimation} 
+                    loop={false} 
+                    style={{ width: 28, height: 28 }} 
+                    className="flex-shrink-0"
+                  />
+                ) : (
+                  <CheckCircle2 className="w-6 h-6 flex-shrink-0" />
+                )}
                 <span>Subscription confirmed. Welcome aboard.</span>
               </motion.div>
             ) : (
